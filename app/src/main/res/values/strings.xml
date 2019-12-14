@@ -4,4 +4,7 @@
     <string name="age">Age</string>
     <string name="insert">Insert</string>
     <string name="show_data">Show Data</string>
+    <string name="update">update</string>
+    <string name="delete">delete</string>
+    <string name="_8942">⋮</string>
 </resources>

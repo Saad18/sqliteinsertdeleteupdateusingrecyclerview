@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //Here showData is onClick Button from xml
     public void ShowData(View view) {
         startActivity(new Intent(this, ShowActivity.class));
 

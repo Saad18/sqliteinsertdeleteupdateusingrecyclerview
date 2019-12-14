@@ -12,13 +12,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static String DATABASE_NAME = "User.db";
     private static String TABLE_NAME = "User";
-    public static String COL_ID = "Id";
-    public static String COL_NAME = "Name";
-    public static String COL_AGE = "Age";
+    static String COL_ID = "Id";
+    static String COL_NAME = "Name";
+    static String COL_AGE = "Age";
     private static  int VERSION = 1;
     private static String createTable = "create table "+TABLE_NAME+"(Id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, Age TEXT)";
 
-    public DatabaseHelper(@Nullable Context context) {
+    DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, VERSION);
     }
 
@@ -44,11 +44,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id;
 
     }
-
-    public Cursor showData(){
+    //Cursor that use to display data
+    Cursor showData(){
         String show_all = "select * From "+TABLE_NAME;
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery(show_all,null);
-        return cursor;
+        return sqLiteDatabase.rawQuery(show_all,null);
+    }
+
+    void deleteData(int id){
+        getWritableDatabase().delete(TABLE_NAME,"id=?",new String[]{String.valueOf(id)});
     }
 }

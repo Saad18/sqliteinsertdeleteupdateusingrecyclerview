@@ -1,8 +1,7 @@
 package com.example.sqliteinsertandview;
-
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,6 +16,7 @@ public class ShowActivity extends AppCompatActivity {
     UserAdapter adapter;
     List<User> users;
     DatabaseHelper helper;
+    Context context;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class ShowActivity extends AppCompatActivity {
     }
 
     private void getData(){
-
+        //Here showData is created function from DatabseHelper
         Cursor cursor = helper.showData();
         while (cursor.moveToNext()){
             int id = cursor.getInt(cursor.getColumnIndex(helper.COL_ID));
@@ -48,7 +48,7 @@ public class ShowActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         users = new ArrayList<>();
         helper = new DatabaseHelper(this);
-        adapter = new UserAdapter(users);
+        adapter = new UserAdapter(users,context);
         recyclerView.setAdapter(adapter);
     }
 }
