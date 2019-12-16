@@ -1,8 +1,8 @@
 package com.example.sqliteinsertandview;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +43,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         holder.idTV.setText(String.valueOf(user.getId()));
         holder.nameTV.setText(user.getName());
         holder.ageTV.setText(user.getAge());
-        //dotTV is three horizontal line in recyclerview
+        //dotTV is three horizontal line Button in recyclerview
         holder.dotTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,7 +56,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
                         switch (item.getItemId()){
                             case R.id.mnu_item_update:
-                                Toast.makeText(context,"Updated",Toast.LENGTH_LONG).show();
+                                // called for Updating data
+                                context.startActivity(new Intent(context,UpdateData.class));
                                 break;
                             case R.id.mnu_item_delete:
                                 //called DatabseHelper class

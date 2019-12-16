@@ -40,6 +40,8 @@ public class ShowActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
         }
 
+
+
     }
 
     private void init(){

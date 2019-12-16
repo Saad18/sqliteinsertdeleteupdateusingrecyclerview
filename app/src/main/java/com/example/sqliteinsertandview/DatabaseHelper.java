@@ -33,6 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+     //Insert Data
     long insertData(String name, String age){
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_NAME,name);
@@ -50,8 +51,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         return sqLiteDatabase.rawQuery(show_all,null);
     }
-
+    //Delete data
     void deleteData(int id){
         getWritableDatabase().delete(TABLE_NAME,"id=?",new String[]{String.valueOf(id)});
     }
+     //Update the existing data
+    boolean updateValues(String id, String name, String age){
+        ContentValues values = new ContentValues();
+        SQLiteDatabase sqLiteDatabase =this.getWritableDatabase();
+        values.put(COL_ID,id);
+        values.put(COL_NAME,name);
+        values.put(COL_AGE,age);
+        sqLiteDatabase.update(TABLE_NAME,values,"id=?",new String[]{id});
+        sqLiteDatabase.close();
+
+        return true;
+    }
+
+
 }
